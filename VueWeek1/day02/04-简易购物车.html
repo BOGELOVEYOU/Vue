@@ -24,8 +24,10 @@
 				<td>{{item.name}}</td>
 				<td>{{item.price}}</td>
 				<td>
+					<button :disabled="item.num<=1" @click="sub(item)">-</button>	
 					{{item.num}}
 					<button @click="add(item)">+</button>	
+					<button @click="del(index)">x</button>	
 				</td>
 				<td>{{item.price*item.num}}</td>
 			</tr>
@@ -63,6 +65,14 @@
 			add(goods){
 				// console.log(goods)
 				goods.num++
+			},
+			sub(goods){
+				goods.num--
+			},
+			del(idx){
+				// console.log('xxx')
+				// console.log(idx)
+				this.cart.splice(idx,1)
 			}
 		}
 	})

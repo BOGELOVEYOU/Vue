@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+	
+	<input type="text" v-focus>
+
+	<div v-color="'blue'">测试文字</div>
+
+
+	<div v-size="66">测试文字</div>
+
+
+	<div>
+		<input type="text" v-phone v-model="phone">
+	</div>
+
+</div>
+
+
+
+
+<!-- 
+	v-model
+	v-if v-else-if v-else
+	v-show 
+	v-for
+	v-once
+	v-cloak
+	v-bind :
+	v-on @
+-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+	//自定义全局指令
+	// 参数1： 指令名称  不需要带v- ，在使用的时候才需要
+	// 参数2： 配置钩子函数的对象 
+		// 回调函数中 常用的 参数
+		// el el是当前绑定的元素对象
+		// //binding和属性相关的对象
+	Vue.directive('focus',{
+		bind:function(){  // 第一次绑定的时候调用
+			// 通常是做一些初始化的操作
+		},
+		inserted:function(el,binding){
+			// console.log(el)  // el是当前绑定的元素对象
+			// console.log(binding)  //binding和属性相关的对象
+			el.focus()
+		},
+		update:function(){ //绑定的元素更新的时候的调用
+
+		}
+	})
+
+	Vue.directive('color',{
+		inserted:function(el,binding){
+
+			// console.log(binding.value) //获取传进来的值
+			// el.style.color = 'red'
+			// console.log(binding.expression) //获取到传进来的表达式
+			// console.log(binding)
+			el.style.color = binding.value
+		}
+	})
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			phone:''
+		},
+		directives:{  //定义局部指令 key:为指令名，value就是钩子函数的配置对象
+			size:{
+				inserted:function(el,binding){
+					el.style.fontSize = binding.value+'px'
+				}
+			},
+			// phone:{
+			// 	inserted:function(el){
+			// 		console.log(el.value)
+			// 	},
+			// 	update:function(el){
+			// 		console.log(el.value)
+			// 	}
+			// }
+
+			phone:function(el){ //简写方式：bind和update是一样的函数，就可以使用简写
+				// console.log(el.value)
+
+				if(/^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[189]))\d{8}$/.test(el.value)){
+
+					el.style.color = 'green'
+				}else{
+					el.style.color = 'red'
+				}
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		.active{
+			font-size: 50px;
+		}
+
+		.color{
+			color: red;
+		}
+
+
+	</style>
+</head>
+<body>
+
+
+<div id="app">
+	<!-- 对象写法：  key 需要显示的样式， value决定它要不要显示的变量   -->
+	<div :class="{active:isActive,color:color}">这是测试文字</div>
+
+
+	<!-- 数组写法：  数组的每一项 都会找对应的value：value是我们要显示的样式  -->
+	<div :class="[arr]">这是测试文字222</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	var app = new Vue({
+		el:'#app',
+		data:{
+			isActive:true,
+			color:true,
+
+			arr:'active',
+			c1:'color'
+		},
+		methods:{
+			
+		}
+	})
+</script>
+</body>
+</html>

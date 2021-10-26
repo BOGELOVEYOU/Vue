@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+<div id="app">
+
+
+		<div :style="{color:color,fontSize:size+'px'}">测试文字</div>
+
+		<button @click="change">+</button>
+
+
+		<hr>
+
+
+		<div :style="[arr1,arr2]">测试文字----</div>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	var app = new Vue({
+		el:'#app',
+		data:{
+			color:'blue',
+			size:16,
+
+			arr1:{
+				color:'red'
+			},
+			arr2:{
+				'font-size':'60px'
+			}
+		},
+		methods:{
+			change(){
+				this.size++
+			}
+		}
+	})
+</script>
+</body>
+</html>
