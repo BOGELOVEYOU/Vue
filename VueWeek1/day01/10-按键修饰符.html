@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+
+<div id="app">
+
+	<!--  只有按键是enter才会触发say -->
+	<input type="text" @keyup.enter="say">
+
+	<br>
+
+
+	<!-- 绑定按键码 -->
+	<input type="text" @keydown.65="test">
+
+	<input type="text" @keydown.aaa="test">
+
+
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+
+	//自定义按键修饰符  (要在new之前就要设置好)
+	Vue.config.keyCodes.aaa = 65;
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			num:0
+		},
+		methods:{
+			say(){ 
+				console.log('say...')
+			},
+			test(e){
+				console.log(e.keyCode)
+			}
+		}
+	})
+	
+
+
+
+	
+</script>
+</body>
+</html>

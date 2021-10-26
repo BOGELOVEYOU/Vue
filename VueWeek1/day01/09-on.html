@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		.big{
+			width: 500px;
+			height: 500px;
+			border: 1px solid red;
+		}
+
+		.mid{
+			width: 300px;
+			height: 300px;
+			border: 1px solid blue;
+		}
+		.small{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+
+<div id="app">
+
+	<div>
+		<button v-on:click="num++">++</button>{{num}}
+	</div>
+	
+
+	<div>
+		简写：
+		<button @click="num++">++</button>{{num}}
+	</div>
+	
+
+
+	<div>
+		<!-- 如果不传参可以不写() -->
+		<button @click="say">say</button>
+	</div>
+
+	<div>
+		<!-- 传参 -->
+		<button @click="set10(10)">set10</button>
+	</div>
+
+
+	<div>
+		<!-- 事件对象 -->
+		<button @click="efun">efun</button>
+	</div>
+
+
+	<div>
+		<!-- 事件对象 在参数的情况下，需要把 $event传在最后  -->
+		<button @click="efun2(10,$event)">efun2</button>
+	</div>
+
+
+
+	<hr>
+
+	<div>阻止冒泡</div>
+	<div class="big" @click.stop="speak('big')">
+		<div class="mid"  @click.stop="speak('mid')">
+			<div class="small" @click.stop="speak('small')">
+			</div>
+		</div>
+	</div>
+
+
+
+	<div>
+		<div>阻止默认事件</div>
+		<a href="" @click.prevent="test">就是空</a>
+	</div>
+
+
+	<div>串联修饰符</div>
+	<div class="big" @click="speak('big')">
+		<div class="mid" @click="speak('mid')">
+			<div class="small" @click="speak('small')">
+				<a href="" @click.prevent.stop="speak('aaaa')">aaaaa</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			num:0
+		},
+		methods:{
+			say(){ 
+				console.log('say...')
+				console.log(this.num)
+			},
+			set10(n){
+				this.num = n
+			},
+			efun(e){
+				console.log(e)
+			},
+			efun2(t,e){
+				console.log(e)
+			},
+			speak(str){
+				console.log(str)
+			},
+			test(){
+				console.log('test')
+			}
+		}
+	})
+	
+
+	
+</script>
+</body>
+</html>

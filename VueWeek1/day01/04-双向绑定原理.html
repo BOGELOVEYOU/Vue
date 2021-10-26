@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+<input type="text" id="inp" oninput="changeval(this)">
+
+
+<script type="text/javascript">
+	
+	/*
+	var obj = {name:'young'};
+
+	obj.name // 取值  //getter
+	obj.name = 'yy' // 设置值 setter
+	*/
+
+
+	// js的普通对象
+	var userInfo = {name:'young'};
+
+	// 当做是一个劫持者
+	var obj = {}
+
+	Object.defineProperty(obj,'name',{
+		get(){  //getter
+			console.log('get')
+			return userInfo.name
+		},
+		set(val){ //setter
+			// console.log('set')
+			document.getElementById('inp').value = val;
+			userInfo.name = val
+		}
+	})
+
+	// console.log(obj.name)
+	// obj.name = 'yy';
+	// console.log(obj.name)
+	// console.log(userInfo.name)
+
+	// 默认输入框的值
+	document.getElementById('inp').value = userInfo.name
+
+	// 发布订阅
+	function changeval(inp){
+		// console.log(inp.value)
+		obj.name = inp.value
+	}
+
+
+</script>
+</body>
+</html>

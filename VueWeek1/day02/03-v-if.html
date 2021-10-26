@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+		
+	<!-- 
+		
+		v-if 条件为false则删除整个节点
+		     true就是显示节点，（添加节点）
+		v-else 如果v-if中为true则显示，否则就不显示（就是显示if中的内容）
+
+		v-if v-else 都使用了，中间不能有其他标签
+
+	-->
+
+	<div v-if="islogin">这是测试文字</div>
+
+
+	<hr>
+
+
+	<div v-if="islogin">用户名、发表文章、退出</div>
+	<!-- <div>就是我</div> -->
+	<div v-else>登录、注册</div>
+
+
+	<hr>
+	<input type="text" v-model="score">
+
+	<div>
+		<div v-if="score>=90">优</div>
+		<div v-else-if="score>=80">良</div>
+		<div v-else-if="score>=70">中</div>
+		<div v-else-if="score>=60">及格</div>
+		<div v-else-if="score>0">不及格</div>
+		<div v-else>请输入成绩</div>
+	</div>
+
+
+	<hr>
+
+
+	<!-- 
+		v-show是通过样式display 来控制显示或隐藏
+		
+	 -->
+	<div v-show="flag">
+		<h2>这是测试文字</h2>
+	</div>
+
+	<button @click="flag=!flag">change</button>
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	var app = new Vue({
+		el:'#app',
+		data:{
+			islogin:true,  //表示登录状态,
+			score: 88,
+			flag:true
+		},
+		methods:{
+			
+		}
+	})
+</script>
+</body>
+</html>

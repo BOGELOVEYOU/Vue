@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+	
+
+	<a v-bind:href="href">千峰首页{{href}}</a>
+
+
+	<!-- 报错 -->
+	<!-- <a href="{{href}}">千峰首页</a> -->
+
+
+	<!-- 简写 -->
+	<img :src="imgsrc" :alt="alt" :title="tille">
+
+
+
+
+
+</div>
+
+
+<img src="https://img.alicdn.com/bao/uploaded/i4/50454948/O1CN01kPsXyC1mQERGyxSbN_!!50454949.jpg_400x400.jpg">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			href:'http://www.qfedu.com/',
+			imgsrc:`https://img.alicdn.com/bao/uploaded/i4/50454948/O1CN01kPsXyC1mQERGyxSbN_!!50454948.jpg_400x400.jpg`,
+			tille:'这是一件衣服',
+			alt:'这就是一件衣服'
+		}
+	})
+	
+
+	
+</script>
+</body>
+</html>

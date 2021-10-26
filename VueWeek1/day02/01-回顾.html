@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+
+<div id="app">
+	<!--   
+		
+		1.取data中的值 （当做字符串输出）
+		2. js表达式
+	-->
+	{{ msg }}
+
+	{{msg.split('').reverse().join('')}}
+
+
+	<div v-html="ele"></div>
+	<div v-text="ele"></div>
+
+
+	<div v-cloak>{{ msg  }}</div>
+
+	<div>
+
+		<!-- v-model会覆盖value checked -->
+
+		<!--  str是一个字符串   -->
+		<input type="text" v-model="str">
+
+		<!-- 多选框绑定的是一个数组 -->
+		<input type="checkbox" value="1" v-model="arr">
+		<input type="checkbox" value="2" v-model="arr">
+		<input type="checkbox" value="3" v-model="arr">
+
+		{{arr}}
+
+
+		<br>
+		<!-- 单个checkbox 是一个boolean -->
+		<input type="checkbox" v-model="flag">{{flag}}
+
+
+		<br>
+
+		<select v-model="sel">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+		{{sel}}
+
+
+		<br>
+		<input type="text" v-model="msg">
+		<div v-once>{{msg}}</div>
+
+		<br>
+
+		<div>
+			<a v-bind:href="href">qfedu</a>
+
+			<a :href="href">:qfedu</a>
+		</div>
+
+		<br>		
+
+		<div>
+			<button v-on:click="fun1">test</button>
+			<button @click="fun1">test</button>
+
+			<button @click="num++">++ {{num}}</button>
+
+			<!-- 函数需要参数，有需要使用事件对象，那么就需要把$event传在最后 -->
+			<button @click="fun2(10,$event)">set10</button>
+
+
+			<!-- 阻止冒泡 -->
+			<button @click.stop="fun1">.stop</button>
+
+			<!-- 阻止默认事件 -->
+			<a href="" @click.prevent>aaaaa</a>
+
+			<br>
+
+			<input type="text" @keydown.enter="fun3">
+
+			<!-- 直接绑定一个按键码 -->
+			<input type="text" @keydown.65="fun3">
+
+
+			<!--  -->
+			<input type="text" @keydown.a="fun3">
+		</div>
+
+	</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	Vue.config.keyCodes.a = 65;
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			msg:'hello',
+			ele:'<h2>这是测试文字</h2>',
+			str:'',
+			arr:[2],
+			flag:false,
+			sel:'',
+			href:'http://www.qfedu.com/',
+			num:0
+		},
+		methods:{
+			fun1(e){  //调用不需要传值，也没有(), 那么第一个形参就是事件对象
+				console.log(e)
+				console.log('aa')
+			},
+			fun2(n,e){
+				// console.log(n)
+				// this代表的是当前实例
+				this.num = n;
+				console.log(e)
+			},
+			fun3(){
+				console.log('3333')
+			}
+		}
+	})
+</script>
+</body>
+</html>

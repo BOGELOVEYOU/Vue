@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		[v-cloak]{
+			display:none
+		}
+	</style>
+</head>
+<body>
+
+<div id="app">
+	<div v-html="msg"></div>
+	<div v-text="ele"></div>
+
+	<!-- 当实例编译好了之后，就把display移除   -->
+	<div v-cloak>
+		{{msg}}
+	</div>
+
+
+	<hr>
+	<b>v-model</b>
+	<input type="text" value="abc123" v-model="msg">
+
+	<hr>
+	<h5>v-model - input radio</h5>
+	性别： <input type="radio" name="sex" value="1" v-model="sex">男
+		<input type="radio" name="sex" value="0" v-model="sex">女
+		{{sex}}
+
+
+
+	<hr>
+	<h5>v-model - input checkbox</h5>
+
+	爱好： 
+		<input type="checkbox" value="ball" v-model="arr">
+		<input type="checkbox" value="run" v-model="arr">
+		<input type="checkbox" checked="checked" value="dance" v-model="arr">
+
+		{{arr}}
+
+	<hr>
+	<h5>v-model - select</h5>
+
+	<select v-model="sel">
+		<option>请选择</option>
+		<option value="1">一阶段</option>
+		<option value="2">二阶段</option>
+		<option value="3">三阶段</option>
+	</select>
+
+	{{sel}}
+
+	<hr>
+	<h5>v-model - 单个checkbox</h5>
+	<input type="checkbox" v-model="agree">
+	{{agree}}
+
+
+	<hr>
+	<!-- 绑定事件 v-on:事件名称；  绑定的函数需要写带methods里面 -->
+	<button v-on:click="test">test</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+	setTimeout(()=>{},5000)
+
+	new Vue({
+		el:'#app',
+		data:{
+			msg:'hello',
+			ele:'<h3>这是测试的文字</h3>',
+			sex: 0,
+			arr:['ball'],
+			sel:'1',
+			agree:''
+		},
+		methods:{
+			test(){
+				console.log('点击了')
+			}
+		}
+	})
+	
+
+	
+</script>
+</body>
+</html>
