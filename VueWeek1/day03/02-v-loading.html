@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+		.box{
+			width: 500px;
+			height: 300px;
+			border: 1px solid red;
+			position: relative;
+		}
+		@keyframes run{
+			0%{transform:rotate(0deg);}
+      		100%{transform:rotate(360deg);}
+		} 
+		.mask{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(240, 240, 240, 0.9);
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;			
+		}
+		.mask>svg{
+			width: 100px;
+			height: 100px;
+			animation: run 1.5s linear infinite;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- 
+		<div class="mask">
+				<svg t="1635296202037" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2442" width="200" height="200"><path d="M1016.057791 124.92321l-22.64677 221.938351a28.081995 28.081995 0 0 1-30.799608 25.364383l-221.938351-22.646771a28.081995 28.081995 0 0 1-14.946869-49.822895l76.546085-62.505086a394.053807 394.053807 0 1 0-45.293541 588.816034 58.881603 58.881603 0 1 1 70.657924 94.210565 511.817014 511.817014 0 1 1 65.675634-757.760942l76.99902-62.505087a28.081995 28.081995 0 0 1 45.746476 24.911448z" fill="#3E2AD1" p-id="2443"></path></svg>
+			</div>
+
+	 -->
+
+	<div id="app">
+		<div class="box" v-loading="flag">
+			<h2>这是测试文字</h2>
+		</div>
+
+
+		<div class="box" v-loading="flag">
+			<h2>这是测试文字</h2>
+		</div>
+		
+		{{flag}}<button @click="flag = !flag">change</button>
+	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+	Vue.directive('loading',{
+		inserted:function(el,binding){
+			// console.log(el)
+			// console.log(binding)
+
+			if(binding.value){
+				var div = document.createElement('div');
+				div.className = 'mask';
+				div.id="mask"
+				div.innerHTML = '<svg t="1635296202037" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2442" width="200" height="200"><path d="M1016.057791 124.92321l-22.64677 221.938351a28.081995 28.081995 0 0 1-30.799608 25.364383l-221.938351-22.646771a28.081995 28.081995 0 0 1-14.946869-49.822895l76.546085-62.505086a394.053807 394.053807 0 1 0-45.293541 588.816034 58.881603 58.881603 0 1 1 70.657924 94.210565 511.817014 511.817014 0 1 1 65.675634-757.760942l76.99902-62.505087a28.081995 28.081995 0 0 1 45.746476 24.911448z" fill="#3E2AD1" p-id="2443"></path></svg>'
+				el.appendChild(div)
+			}
+
+		},
+
+		update:function(el,binding){
+			// console.log(el)
+			// console.log(binding)
+			if(binding.value){
+
+				var div = document.createElement('div');
+				div.className = 'mask';
+				div.id="mask"
+				div.innerHTML = '<svg t="1635296202037" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2442" width="200" height="200"><path d="M1016.057791 124.92321l-22.64677 221.938351a28.081995 28.081995 0 0 1-30.799608 25.364383l-221.938351-22.646771a28.081995 28.081995 0 0 1-14.946869-49.822895l76.546085-62.505086a394.053807 394.053807 0 1 0-45.293541 588.816034 58.881603 58.881603 0 1 1 70.657924 94.210565 511.817014 511.817014 0 1 1 65.675634-757.760942l76.99902-62.505087a28.081995 28.081995 0 0 1 45.746476 24.911448z" fill="#3E2AD1" p-id="2443"></path></svg>'
+				el.appendChild(div)
+
+			}else{
+				el.removeChild(document.getElementById('mask'))
+			}
+			
+		}
+	})
+
+
+
+	var app = new Vue({
+		el:'#app',
+		data:{
+			flag: true
+		}
+	})
+</script>
+
+</body>
+</html>

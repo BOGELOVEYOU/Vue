@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!-- 
+
+	
+	v-for="(item,index) in list"
+	
+	:key 是要一个唯一值  ，通常是使用id,如果没有就用index
+	
+	v-if v-else-if v-else   中间不能有其他标签
+
+	v-show 是通过样式display来控制显示或者隐藏，
+		v-if是通过删除或者增加节点做的
+	
+	购物车
+		只是遍历了一个数组
+
+	:class 
+		对象  :class="{active:isActive}"
+		数组  :class="[color]"
+			data:{
+				color:'red'
+			}
+	:style 
+		对象  :style="{color:red}"
+			data:{
+				red:'#f00'
+			}
+
+		数组  :style="[arr]"
+			data:{
+				arr:{
+					color:'red',
+					'font-size': '60px'
+				}
+			}
+
+	
+	购物车全选、全不选
+		checkbox 改变 对应的事件问题
+			click  获取之前的值
+			change 改变之后的值
+
+		v-model 绑定的是一个单独checkbox  值是boolean
+			如果绑定的是多个checkbox  值是一个数组， （选中框，把value添加到这个数组中）
+
+
+	自定义指令
+		vue: v-html v-text v-model v-if v-show v-bind v-on v-once v-cloak
+	
+
+	// 全局自定义
+	Vue.directive('指令名称',{
+		//配置  -- 钩子函数
+		
+		bind:function(el,binding){
+			//做初始化的操作
+
+			// el  //当前指令绑定的元素对象
+			// binding // 是和传值相关的
+				// binding.value // 是获取传进来的值 2
+				// binding.expression  //获取传进来的表达式  1+1
+
+				// bingding.arg     // v-phone:china   v-phone:usa
+
+				//binding.modifiers  //v-phone.obj 
+		},
+		inserted:function(){
+			// 插入到父元素中（保证父元素存在）
+		},
+		update:function(){
+			// 元素发生更新的时候
+		}
+	})
+
+	
+	// 局部
+		new Vue({
+			el:'#app',
+			directives:{
+				'指令名称':{
+					//钩子函数的配置对象
+				}
+			}
+		})
+	
+
+	// 当钩子函数的bind 和update 做的一样的事情的情况，那就可以使用简写
+
+		new Vue({
+			el:'#app',
+			directives:{
+				'指令名称':function(){  bind、update 做的是一样的操作
+					
+				}
+			}
+		})
+
+
+
+
+-->
+</body>
+</html>
