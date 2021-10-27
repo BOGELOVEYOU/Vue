@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+<div id="app">
+	{{msg}}
+	<input type="text" v-model="msg">
+
+
+	<button @click="des">销毁实例</button>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '#app',
+		data:{
+			msg:'hello'
+		},
+		methods:{
+			des(){
+				this.$destroy()  // 手工销毁实例
+			}
+		},
+
+		beforeCreate(){
+			
+			console.log('创建前');
+			console.log(this.msg)  // data还未创建好
+			console.log(this.$el)  // 实例未挂载
+			console.log(document.getElementById('app').innerHTML) // 模板未编译
+			console.log(document.getElementById('app'))
+		},
+		created(){
+			/* 
+			console.log('创建后');
+			console.log(this.msg)  // data已经创建好
+			console.log(this.$el)   // 实例未挂载
+			console.log(document.getElementById('app').innerHTML) // 模板未编译
+			*/
+		},
+		beforeMount(){
+			/*
+			console.log('挂载前');
+			console.log(this.msg)  // data已经创建好
+			console.log(this.$el)  // 实例已挂载 
+			console.log(document.getElementById('app').innerHTML)  // 模板未编译
+			*/
+		},
+		mounted(){
+			/*
+			console.log('挂载后------');
+			console.log(this.msg)  // data已经创建好
+			console.log(this.$el)  // 实例已挂载，并且已编译 
+			console.log(document.getElementById('app').innerHTML)  //模板已编译
+			*/
+		},
+		beforeUpdate(){
+			/*
+			console.log('更新前');
+			console.log(this.msg)  //data已变化
+			console.log(this.$el)  //实例也已经更新
+			console.log(document.getElementById('app').innerHTML) 
+			//还没有更新模板
+			*/
+		},
+		updated(){
+			/*
+			console.log('更新后');
+			console.log(this.msg)  //data已变化
+			console.log(this.$el)  //实例也已经更新
+			console.log(document.getElementById('app').innerHTML) 
+			//已经更新模板
+			*/
+		},
+		beforeDestroy(){
+			console.log('销毁前'); // 销毁前还是好的实例
+			console.log(this.msg) 
+			console.log(this.$el)  
+			console.log(document.getElementById('app').innerHTML) 
+		},
+		destroyed(){
+			console.log('销毁后'); // 销毁后实例是没有变化的
+			console.log(this.msg)  // 但是所有vue属性/指令...就不能再用了
+			console.log(this.$el)  
+			console.log(document.getElementById('app').innerHTML) 
+		}
+	})
+</script>
+</body>
+</html>

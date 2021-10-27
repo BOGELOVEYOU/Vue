@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+	<button @click="add">add</button>
+
+	{{ count }}
+
+	<button @click="sub">--</button>
+
+
+	<button @click="ince">ince</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script type="text/javascript">
+
+	//全局混入
+	Vue.mixin({
+		data(){
+			return {
+				count:0
+			}
+		},
+		methods:{
+			add(){
+				console.log('aaaa')
+			}
+		}
+	})
+
+
+	var obj = {
+		methods:{
+			sub(){
+				console.log('--')
+			}
+		}
+	}
+
+
+	var obj2 = {
+		methods:{
+			ince(){
+				console.log('++')
+			}
+		}
+	}
+
+
+	new Vue({
+		el:'#app',
+		data:{
+			count: 2
+		},
+		methods:{
+			add(){  //内部的会覆盖mixin的
+				console.log(1)
+			}
+		},
+		mixins: [obj,obj2]   // 局部混入
+	})
+</script>
+</body>
+</html>
