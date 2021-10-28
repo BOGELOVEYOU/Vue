@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!-- 
+	
+	自定义指令
+
+	全局 
+	Vue.directive('指令名称',{
+		//配置钩子函数
+		bind:function(el,binding){ //初次绑定的时候调用
+			// el  所绑定的dom对象
+			// binding 和传值相关的对象
+				// value 值  2
+				// expression 表单 1+1
+				// modifiers 修饰符 .
+				// arg 参数 :
+		},
+		interted:function(){ // 绑定的元素插入到父节点的时候（保证父节点存在）
+		
+		},
+		update:function(){  //所绑定的元素更新的时候
+	
+		}
+
+		//https://cn.vuejs.org/v2/guide/custom-directive.html
+	})
+
+
+	局部
+	new Vue({
+		el:'#app',
+		directives:{
+			'指令名称':{
+				// 钩子函数的配置对象
+			}
+		}
+	})
+	// 当 bind 和 update 做的操作是一样的情况下就可以简写
+	directives:{
+		'name':function(){  // 简写
+	
+		}
+	}
+	
+
+
+ 	// 计算属性
+	new Vue({
+		el:'#app',
+		data:{
+			count:0,
+			person:{
+				name:'young',
+				age:19
+			}
+		},
+		computed:{
+			fun1(){ 
+				// 计算属性 就相当于定义 data中一个变量  {{ fun1 }}
+				// 当count发生改变执行，否则就只执行一次，其他的都是凋用缓存的
+				return this.count
+			}
+		},
+		watch:{  // 监听data的变化、如果变化可以做的额外的操作
+			'count':function(newval,oldval){
+				
+			},
+
+			person:{	
+				// 如果修改是person.name 是不会触发这个监听函数的
+				// 如果要触发就要使用深度监听
+
+				handler:function(newval){
+					
+				},
+				deep:true,
+				// 配置为深度监听、只有配置才会触发上面的handler方法
+
+				immediate: true // 主动触发一次侦听函数
+			}
+		},
+		methods:{
+	
+		}
+
+	})
+
+	
+
+	// 过滤器
+	// 其实就是一个方法，对变量可以进行过滤操作，要使用 | 来调用
+
+	
+	Vue.filter('名称',function(val){
+		// val 过滤的值
+		return val
+	})
+
+	
+	<div>{{msg | 过滤器名称}}</div>
+
+	// 转大写，小写 ，性别 ，货币符号
+
+	// 局部
+	new Vue({
+		el:'#app',
+		filters:{
+			'过滤器名称':function(val){
+				return val
+			}
+		}
+	})
+
+
+	// mixin  混入
+	// 假设有多个实例或者组件，有公共属性的话，就可以把公共属性抽离出来
+	// 通过mixin 混入
+
+	//全局混入
+	Vue.mixin({  
+		data(){  // 混入中的data不是一个对象，而是一个函数，返回一个对象，在返回的对象中定义变量
+			return {
+				count:0
+			}
+		}
+	})
+
+	// new Vue() 的时候，就会混入到当前的实例里面
+
+
+
+	// 局部混入
+	
+	var mm = {
+		methods:{
+			add:function(){
+			}
+		}
+	}
+	
+
+	new Vue({
+		mixins:[mm]
+	})
+	// 如果混入有重名的，是使用内部的，混入的就会被覆盖了
+
+
+
+
+	// ---------------
+
+	生命周期
+	实例创建的过程 和 模板的关系
+
+	创建前后、挂载前后、更新前后、销毁前后
+
+
+	beforeCreate(){
+		// data 没有
+		// 实例未挂载
+		// 模板未编译
+	}
+
+	created(){
+		// data 已经好了
+		// 实例未挂载
+		// 模板未编译
+	}
+	
+
+	beforeMount(){
+		// 实例已经挂载了 // dom对象已经创建好了
+		// 模板未编译
+	}
+
+	mounted(){
+		都好了
+	}
+	
+
+	beforeUpdate(){
+		// data已经变化了
+		// 实例对象也变化了
+		// 模板未更新
+	}
+
+	updated(){
+		//都更新好了
+	}
+
+	beforeDestroy(){
+		// 手动销毁的方法  this.$destroy()
+		// 还是好的
+	}
+
+	destroyed(){
+		// data在，实例也在
+		// 就是相关的指令属性...不能用了
+	}
+
+
+
+
+	
+
+-->
+</body>
+</html>

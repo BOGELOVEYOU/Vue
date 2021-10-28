@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+	<ul id="ul">
+	</ul>
+
+
+<script type="text/javascript" src="./node_modules/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+	
+	$.ajax({
+		url:'https://api.i-lynn.cn/college',
+		type:'get',
+		success:function(data){
+			// console.log(data)
+
+
+			var list = data.data.list;
+
+
+			var html = '';
+			for(var i=0; i<list.length;i++){
+				html += `<li>${list[i].area}</li>`
+			}
+
+			$('#ul').html(html)
+
+		},
+		error:function(err){
+			console.log(err)
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+<div id="app">
+	
+	<ul id="ul">
+		
+
+	</ul>
+</div>
+
+
+
+<script type="text/javascript">
+	// 1
+	var xhr = new XMLHttpRequest();
+	// 2
+	xhr.onreadystatechange = function(){
+		// 3 判断状态
+		// xhr.readyState  0-4
+		if(xhr.readyState == 4 && xhr.status == 200){
+			// console.log(xhr.responseText)
+			var obj = JSON.parse(xhr.responseText);
+			// console.log(obj)
+
+			var list = obj.data.list;
+			var html = '';
+			for(var i=0; i<list.length;i++){	
+				// var li = `<li>${list[i].area}</li>`
+				var li = '<li>'+list[i].area+'</li>'
+				html += li;
+			}
+			document.getElementById('ul').innerHTML = html;
+		}
+
+	}
+
+	//4 打开请求
+	xhr.open('GET','https://api.i-lynn.cn/college')
+
+	//5 发送请求
+	xhr.send()
+
+</script>
+</body>
+</html>
