@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+	<!-- salary="8000"  因为子组件没有定义salary 所以传进去也没用 -->
+	<child name="young" age="19"></child>
+
+
+	<!-- 
+
+		<input type="button">
+		<input type="radio" >
+		<input type="text">
+	 -->
+
+
+	<child2 name="yy" :age="18"></child2>
+
+
+	<hr>
+	<child3></child3>
+</div>
+
+
+
+<template id="child">
+	<div>
+		<h2>这是child组件  </h2>
+
+		<div>name: {{ name }}</div>
+		<div>age: {{ age }}</div>
+		<!-- <div> {{salary}}</div> -->
+	</div>
+</template>
+<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	// 子组件需要接受值，就需要定义props
+	Vue.component('child',{
+		props:['name','age'],
+		template:'#child'
+	})	
+
+
+	Vue.component('child2',{
+		props:{
+			name:String, //指定传值的类型为String
+			age:Number //指定类型为Number
+		},
+		template:`<div>{{name}}{{age}}</div>`
+	})
+
+
+	Vue.component('child3',{
+		props:{
+			name: {  //  指定类型和默认值
+				type: String,  // 类型
+				default:'yy'  // 默认值
+			},
+			age: {
+				type: Number,
+				default: 18
+			}
+		},
+		template:`<div>{{name}}{{age}}</div>`
+	})
+
+	new Vue({
+		el:'#app'
+	})
+</script>
+</body>
+</html>

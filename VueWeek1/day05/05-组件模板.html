@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<my></my>
+	<my-com></my-com>
+</div>
+
+<template id="mycom">
+	<div>
+		<h2>这是组件抽离出来的内容</h2>
+	</div>
+</template>
+
+
+<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+	
+	Vue.component('my-com',{
+		template:'#mycom'
+	})
+
+
+	Vue.component('my',{
+		data(){
+			return {
+				msg:'hello 组件'
+			}
+		},
+		methods:{
+			add(){
+				console.log('add')
+			}
+		},
+		template:'<div><h2>这是文字  {{msg}}  <button @click="add">add</button> </h2><h3>这是3</h3></div>'
+	})
+
+	new Vue({
+		el:'#app',
+		data:{
+
+		},
+		components:{  // 注册局部组件  key:组件名，value：组件配置对象
+			'jubu':{
+				template:'<h2>这是局部组件</h2>'
+			}
+		}
+	})
+</script>
+</body>
+</html>

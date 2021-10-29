@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+
+<script type="text/javascript">
+	
+	// 自定义axios实例
+	// axios.create({配置对象})
+	var myaxios = axios.create({
+		baseURL:'https://www.young1024.com:3002/',
+		method:'post',
+		transformRequest:function(data,headers){ // 请求之前参数转换操作
+			// console.log(data)
+
+			var params = '';
+			for(item in data){
+				params += item+'='+data[item]+'&'
+			}
+			params = params.substring(0,params.length-1)
+
+			return params
+		},
+		transformResponse:function(data){  
+			// 响应转换时：data是一个字符串
+
+			// console.log(data)
+			var dd = JSON.parse(data)
+			// console.log(dd)
+			return dd.data
+		}
+	})
+
+
+	myaxios({
+		url:'news',
+		data: {
+			type:'NBA'
+		}
+	}).then(res=>{
+		console.log(res)
+	})
+
+
+
+</script>
+</body>
+</html>

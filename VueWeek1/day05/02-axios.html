@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+<script type="text/javascript">
+	//  构造函数形式
+	// 之前的get post 都是别名的形式
+
+
+	axios({
+		method:'get',
+		url:'http://121.89.205.189/admin/pro/list',
+		headers:{
+			'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJhZG1pbiIsImlhdCI6MTYzNTQ2Nzc4OCwiZXhwIjoxNjM1NDk2NTg4fQ.YDFqDUlEs06Sot4U78VqHsKliB6t5-NPnZf7mOvjAnU'
+		},
+		params:{name:'young',age:18}  // get在params中传参
+	}).then(res=>{
+		console.log(res)
+	})
+
+
+	axios({
+		url:'http://121.89.205.189/admin/admin/login',
+		method:'post',
+		// data:{
+		// 	adminname:'admin',
+		// 	password:'123456'
+		// }
+
+		data:'adminname=admin&password=123456'
+	}).then(res=>{
+		console.log(res)
+	})
+
+
+
+</script>
+</body>
+</html>
