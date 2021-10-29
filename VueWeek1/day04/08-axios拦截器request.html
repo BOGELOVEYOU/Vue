@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+<script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+<script type="text/javascript">
+
+	axios.defaults.baseURL="https://www.young1024.com:3002/";
+
+
+
+	axios.interceptors.request.use(function(config){
+		// console.log(config)
+		// config.data += '&name=young'
+
+		// 把传递的参数改成对象形式 {name:young,age:18}
+		// 在这个请求的拦截器中在改成 表单的形式 name=young&age=18
+		// console.log(config.data)
+		var params = ''
+		for(item in config.data){
+			// console.log(item)
+			// console.log(config.data[item])
+			params += item+'='+config.data[item]+'&'
+		}
+		// slice()
+		params = params.substring(0,params.length-1)
+		console.log(params)
+
+		// 把转换后的参数再赋值给data
+		config.data = params;
+
+
+		return config;
+	})
+
+	axios.post('news',{type:'财经',size:30}).then(res=>{
+		console.log(res)
+	})
+
+	axios.post('search',{keyword:'车',size:2}).then(res=>{
+		console.log(res)
+	})
+
+	// axios.post('search','keyword=军事&size=30').then(res=>{
+	// 	console.log(res)
+	// })
+
+
+	/*
+		axios.post('search',{keyword:'军事'，size:30}).then(res=>{
+		console.log(res)
+	})
+	*/ 
+
+
+</script>
+</body>
+</html>

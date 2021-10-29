@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+
+<script type="text/javascript">
+
+	// 获取新闻的列表
+	// axios.post('https://www.young1024.com:3002/news','type=NBA').then(res=>{
+ 	// 		console.log(res)
+ 	// 	})
+
+ 	//搜索新闻
+ 	// axios.post('https://www.young1024.com:3002/search','keyword=基金').then(res=>{
+ 	// 	console.log(res)
+ 	// })
+
+
+ 	// 全局配置axios
+
+ 	// 配置接口的根地址
+ 	axios.defaults.baseURL="https://www.young1024.com:3002/";
+
+ 	axios.post('news','type=财经').then(res=>{
+ 		console.log(res)
+ 	})
+
+ 	axios.post('search','keyword=车').then(res=>{
+ 		console.log(res)
+ 	})
+
+    // 以上两个都是别名的调用方式
+
+
+
+</script>
+</body>
+</html>

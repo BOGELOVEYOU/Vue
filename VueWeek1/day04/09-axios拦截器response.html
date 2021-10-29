@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+<script type="text/javascript">
+
+	axios.defaults.baseURL="https://www.young1024.com:3002/";
+
+	axios.interceptors.request.use(function(config){
+		var params = ''
+		for(item in config.data){
+			params += item+'='+config.data[item]+'&'
+		}
+		params = params.substring(0,params.length-1)
+		config.data = params;
+		return config;
+	})
+
+	// 响应拦截
+	axios.interceptors.response.use(function(res){
+		console.log(res);
+		res.data = res.data.data
+		// res.data.push({name:'young',age:18})
+		return res;
+	})
+
+
+
+	axios.post('news',{type:'财经',size:30}).then(res=>{
+		console.log(res)
+	})
+
+	axios.post('search',{keyword:'车',size:2}).then(res=>{
+		console.log(res)
+	})
+
+
+
+
+</script>
+</body>
+</html>

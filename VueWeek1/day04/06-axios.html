@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+	
+
+	// http 不更新，就被弃用了，推荐使用axios
+
+
+	// axios
+	// 基于 promise 封装的请求库
+	// xhr fetch  
+	// 可以请求拦截 和 响应拦截
+	// name = young
+
+
+	// 1.下载库
+	// npm i axios
+
+</script>
+
+
+ <script type="text/javascript" src="./node_modules/axios/dist/axios.js"></script>
+
+ <script type="text/javascript">
+ 	// $  Vue
+ 	// console.log(axios)
+
+
+ 	//get
+ 	axios.get('https://api.i-lynn.cn/college').then(res=>{
+ 		console.log(res)
+ 		/*
+		 	res 包含以下属性
+		 	config 配置对象
+		 	data 返回回来的数据
+		 	headers 请求头信息
+		 	request 请求信息 用那种方式去请求的
+		 	status 状态码
+		 	statusText 状态码的文字提示信息
+
+ 		*/
+ 	})
+
+ 	// https://www.young1024.com:3002/news  
+
+
+ 	// post
+ 	axios.post('https://www.young1024.com:3002/news','type=NBA').then(res=>{
+ 		console.log(res)
+ 	})
+
+
+
+ </script>
+</body>
+</html>
