@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<div id="app">
+	<h2>123</h2>
+
+	{{num}}
+	<one></one>
+
+</div>
+
+<template id="one">
+	<div>
+		{{score}}
+
+
+		<button @click="score++">++</button>
+	</div>
+</template>
+
+<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+
+<script type="text/javascript">
+
+	Vue.component('one',{
+		template:'#one',
+		data(){
+			return {
+				score:100
+			}
+		},
+		watch:{
+			score:function(val){
+				console.log(val*2)
+			}
+		}
+	})
+	new Vue({
+		el:'#app',
+		data:{
+			num:10
+		}
+	})
+</script>
+
+</body>
+</html>
